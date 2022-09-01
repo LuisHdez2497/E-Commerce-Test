@@ -9,6 +9,7 @@ export default createStore({
     state: {
         product: {},
         products: [],
+        media: {},
 
         user: {},
         users: []
@@ -21,6 +22,9 @@ export default createStore({
         },
         SET_PRODUCTS(state, products){
             state.products = products;
+        },
+        SET_MEDIA(state, media){
+            state.media = media;
         },
 
         //Users
@@ -41,9 +45,10 @@ export default createStore({
                 }).catch(error=> console.log(error))
         },
         showProduct({commit}){
-            axios.get('/api/product-preview'+this.state.product.id)
+            axios.get('/api/product-preview/'+this.state.product.id)
                 .then(response => {
                     commit('SET_PRODUCT', response.data)
+                    commit('SET_MEDIA', response.data.media[0])
                 }).catch(error=> console.log(error))
         },
         insertProduct({commit}){

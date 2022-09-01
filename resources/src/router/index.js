@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import Home from '../views/Client/Home.vue';
-import ProductDescription from '../views/Client/ProductDescription.vue';
+import ProductDescription from '../views/Client/ProductPreview.vue';
 import Checkout from '../views/Client/Checkout.vue';
 import ConfirmedOrder from '../views/Client/ConfirmedOrder.vue';
 
@@ -20,21 +20,21 @@ import UserPreview from '../views/Admin/Users/UserPreview.vue';
 const routes = [
     //Client Routes
     {path: '/', name: "Home", component: Home},
-    {path: '/product/:id/:slug', name: "Product Description", component: ProductDescription},
-    {path: '/checkout', name: "Checkout", component: Checkout},
-    {path: '/confirmed-order', name: "Confirmed Order", component: ConfirmedOrder},
+    {path: '/product-preview/:id/:slug', name: "Product Description", component: ProductDescription, props: true},
+    {path: '/checkout', name: "Checkout", component: Checkout, props: true},
+    {path: '/confirmed-order', name: "Confirmed Order", component: ConfirmedOrder, props: true},
     //End Client Routes
 
     //Admin Routes
     {path: '/login', name: "Login", component: Login},
 
     {path: '/admin/products', name: "Products", component: Products},
-    {path: '/admin/add-product', name: "Add Product", component: AddProduct},
+    {path: '/admin/add-product', name: "Add Product", component: AddProduct, props: true},
     {path: '/admin/edit-product/:id', name: "Edit Product", component: EditProduct, props: true},
     {path: '/admin/product-preview/:id', name: "Product Preview", component: ProductPreview, props: true},
 
     {path: '/admin/users', name: "Users", component: Users},
-    {path: '/admin/add-user', name: "Add User", component: AddUser},
+    {path: '/admin/add-user', name: "Add User", component: AddUser, props: true},
     {path: '/admin/edit-user/:id', name: "Edit User", component: EditUser, props: true},
     {path: '/admin/user-preview/:id', name: "User Preview", component: UserPreview, props: true},
     //End Admin Routes
