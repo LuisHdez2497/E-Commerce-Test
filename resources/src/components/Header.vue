@@ -5,8 +5,8 @@
                 <div class="container mx-auto flex items-end justify-end">
                     <div class="justify-end flex items-center space-x-4">
                         <div class="flex items-end space-x-4 xl:space-x-8">
-                            <button aria-label="go to cart"
-                                    class="text-black hover:text-orange-500">
+                            <router-link to="/cart"
+                                    class="text-black text-xl font-bold hover:text-orange-500">
                                 <svg class="fill-stroke" width="40" height="40" viewBox="0 0 26 26" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -19,8 +19,8 @@
                                         d="M18.3346 10.6001C18.3346 11.8731 17.7727 13.094 16.7725 13.9942C15.7723 14.8944 14.4158 15.4001 13.0013 15.4001C11.5868 15.4001 10.2303 14.8944 9.23007 13.9942C8.22987 13.094 7.66797 11.8731 7.66797 10.6001"
                                         stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                         stroke-linejoin="round"/>
-                                </svg>
-                            </button>
+                                </svg> Cart
+                            </router-link>
                         </div>
                     </div>
                 </div>

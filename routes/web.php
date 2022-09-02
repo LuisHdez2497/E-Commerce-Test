@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {return view('home', ['title' => 'Home']);});
 Route::get('/product-preview/{id}/{slug}', function () {return view('home', ['title' => 'Preview']);});
 Route::get('/checkout', function () {return view('home', ['title' => 'Checkout']);});
+Route::get('/cart', function () {return view('home', ['title' => 'Checkout']);});
 Route::get('/confirmed-order', function () {return view('home', ['title' => 'Confirmed Order']);});
 
 //Admin Routes

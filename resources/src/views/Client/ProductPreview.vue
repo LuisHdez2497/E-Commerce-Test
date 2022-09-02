@@ -15,14 +15,31 @@
                             <h1 class="font-bold uppercase text-5xl mb-5">{{ product.name }}</h1>
                             <p class="text-lg">{{ product.description }}</p>
                         </div>
-                        <div>
-                            <div class="inline-block align-bottom mr-5">
+                        <div class="flex flex-col">
+                            <div class="inline-block align-bottom mb-14">
                                 <span class="text-3xl font-bold leading-none align-baseline">$</span>
                                 <span class="font-semibold text-5xl leading-none align-baseline">{{ product.price }}</span>
                             </div>
-                            <div class="inline-block align-bottom">
-                                <button class="border-black border-2 bg-white sm:mr-3 opacity-75 hover:opacity-100 text-black hover:bg-black hover:text-white rounded-full px-7 py-2 font-semibold"><i class="mdi mdi-cart -ml-1 mr-1"></i> ADD CART</button>
-                                <button class="bg-orange-300 opacity-75 hover:opacity-100 hover:bg-orange-400 text-black hover:text-white rounded-full px-7 py-2 font-semibold"><i class="mdi mdi-shopping -ml-1 mr-1"></i> BUY NOW</button>
+                            <div v-if="!product.status">
+                                <h3 class="text-3xl text-red-600">"Out of stock"</h3>
+                            </div>
+                            <div v-if="product.status" class="flex flex-col mb-6">
+                                <label for="custom-input-number" class="text-gray-700 w-36 text-center text-lg font-semibold">Quantity</label>
+                                <div class="flex flex-row h-10 rounded-lg relative bg-transparent mt-1">
+                                    <button @click="quantity('decrement')" class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-l cursor-pointer outline-none">
+                                        <span class="m-auto text-2xl font-bold">−</span>
+                                    </button>
+                                    <input type="number"
+                                           class="w-16 outline-none focus:outline-none text-center bg-gray-300 font-semibold border-2 border-gray-400 text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none"
+                                           name="custom-input-number" v-model="itemCart.quantity">
+                                    <button @click="quantity('increment')" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-r cursor-pointer">
+                                        <span class="m-auto text-2xl font-bold">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div v-if="product.status" class="inline-block align-bottom">
+                                <button @click="addItemToCart(itemCart)" class="border-black border-2 bg-white sm:mr-3 opacity-75 hover:opacity-100 text-black hover:bg-black hover:text-white rounded-full px-7 py-2 font-semibold"><i class="mdi mdi-cart -ml-1 mr-1"></i> ADD CART</button>
+                                <router-link v-if="cartItems.length > 0" to="/cart"  class="bg-orange-300 opacity-75 hover:opacity-100 hover:bg-orange-400 text-black hover:text-white rounded-full px-7 py-2 font-semibold"><i class="mdi mdi-shopping -ml-1 mr-1"></i> BUY NOW</router-link>
                             </div>
                         </div>
                     </div>
@@ -44,24 +61,48 @@ export default {
     },
     data(){
         return {
-            img_src: ''
+            img_src: '',
+            itemCart: {
+                id: this.id,
+                quantity: 1,
+                status: ''
+            }
         }
     },
     props: {
         id: String
     },
     methods: {
-        ...mapActions(['showProduct']),
+        ...mapActions(['showProduct', 'addItemToCart']),
+
+        quantity(action) {
+            if (action == 'decrement'){
+                if (this.itemCart.quantity > 1){
+                    this.itemCart.quantity--
+                }else{
+                    this.itemCart.quantity = 1;
+                }
+
+            }else{
+                if (this.itemCart.quantity < 10){
+                    this.itemCart.quantity++
+                }else{
+                    this.itemCart.quantity = 10;
+                }
+            }
+
+        },
     },
     computed: {
-        ...mapState(['product', 'media'])
+        ...mapState(['product', 'media', "cartItems"]),
     },
     created() {
         store.commit('SET_PRODUCT', {id: this.id});
         this.showProduct();
     },
     updated(){
-        this.img_src = '/storage/'+this.media.model_id+'/'+this.media.file_name;
+        this.img_src = (this.media != null) ? '/storage/'+this.media.model_id+'/'+this.media.file_name: '/storage/img/NotFound.png';
+        this.itemCart.status = this.product.status
     }
 }
 </script>

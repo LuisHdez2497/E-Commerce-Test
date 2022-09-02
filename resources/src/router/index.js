@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Client/Home.vue';
 import ProductDescription from '../views/Client/ProductPreview.vue';
 import Checkout from '../views/Client/Checkout.vue';
+import Cart from '../views/Client/Cart.vue';
 import ConfirmedOrder from '../views/Client/ConfirmedOrder.vue';
 
 import Login from '../views/Admin/Login.vue';
@@ -10,7 +11,7 @@ import Login from '../views/Admin/Login.vue';
 import Products from '../views/Admin/Products/Products.vue';
 import AddProduct from '../views/Admin/Products/AddProduct.vue';
 import EditProduct from '../views/Admin/Products/EditProduct.vue';
-import ProductPreview from '../views/Admin/Products/ProductPreview.vue'
+import ProductPreview from '../views/Admin/Products/ProductPreview.vue';
 
 import Users from '../views/Admin/Users/Users.vue';
 import AddUser from '../views/Admin/Users/AddUser.vue';
@@ -22,6 +23,7 @@ const routes = [
     {path: '/', name: "Home", component: Home},
     {path: '/product-preview/:id/:slug', name: "Product Description", component: ProductDescription, props: true},
     {path: '/checkout', name: "Checkout", component: Checkout, props: true},
+    {path: '/cart', name: "Cart", component: Cart, props: true},
     {path: '/confirmed-order', name: "Confirmed Order", component: ConfirmedOrder, props: true},
     //End Client Routes
 
