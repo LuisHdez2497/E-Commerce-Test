@@ -1,8 +1,8 @@
 <template>
-    <div id="product-description">
+    <div id="product-description" class="min-h-screen bg-white">
         <Header />
-        <div class="min-w-screen min-h-screen bg-orange-100 flex items-center p-5 lg:p-10 overflow-hidden relative">
-            <div class="w-full max-w-7xl bg-white shadow-xl p-10 lg:p-14 xl:p-20 mx-auto text-gray-800 relative md:text-left rounded-xl">
+        <div class="min-w-screen flex items-center p-5 lg:p-10 overflow-hidden relative">
+            <div class="w-full max-w-7xl bg-white shadow-xl p-10 lg:p-14 xl:p-20 mx-auto text-gray-800 relative md:text-left rounded-xl shadow-2xl bg-white border-t-8 border-orange-400">
                 <router-link to="/" class="text-4xl bg-transparent opacity-75 hover:opacity-100 text-black font-semibold"><i class="mdi mdi-arrow-left-bold-circle -ml-1 mr-1"></i> Home</router-link>
                 <div class="md:flex items-center -mx-10">
                     <div class="w-full md:w-1/2 px-10 mb-10 md:mb-0">
@@ -38,8 +38,9 @@
                                 </div>
                             </div>
                             <div v-if="product.status" class="inline-block align-bottom">
-                                <button @click="addItemToCart(itemCart)" class="border-black border-2 bg-white sm:mr-3 opacity-75 hover:opacity-100 text-black hover:bg-black hover:text-white rounded-full px-7 py-2 font-semibold"><i class="mdi mdi-cart -ml-1 mr-1"></i> ADD CART</button>
-                                <router-link v-if="cartItems.length > 0" to="/cart"  class="bg-orange-300 opacity-75 hover:opacity-100 hover:bg-orange-400 text-black hover:text-white rounded-full px-7 py-2 font-semibold"><i class="mdi mdi-shopping -ml-1 mr-1"></i> BUY NOW</router-link>
+                                <button @click="addItemToCart(itemCart); addToCart()" class="mr-5 rounded-full border border-transparent bg-gray-500 py-3 px-6 text-lg font-semibold text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"><i class="mdi mdi-cart -ml-1 mr-1"></i> ADD CART</button>
+                                <router-link v-if="cartItems.length > 0" to="/cart"  class="rounded-full border border-transparent bg-orange-500 py-3 px-6 text-lg font-semibold text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"><i class="mdi mdi-shopping -ml-1 mr-1"></i> BUY NOW</router-link>
+                                <Alert :visible="alertVisible" position="top-right" color="success" title="Success" :description="'You have added to your cart: '+ product.name" />
                             </div>
                         </div>
                     </div>
@@ -51,13 +52,15 @@
 
 <script>
 import Header from "../../components/Header.vue";
+import Alert from "../../components/Alert.vue";
 import {mapState, mapActions} from 'vuex';
 import store from "../../store";
 
 export default {
     name: 'Product Description',
     components: {
-        Header
+        Header,
+        Alert
     },
     data(){
         return {
@@ -66,7 +69,8 @@ export default {
                 id: this.id,
                 quantity: 1,
                 status: ''
-            }
+            },
+            alertVisible: false,
         }
     },
     props: {
@@ -74,6 +78,13 @@ export default {
     },
     methods: {
         ...mapActions(['showProduct', 'addItemToCart']),
+
+        addToCart() {
+            this.alertVisible = true;
+            setTimeout(() => {
+                this.alertVisible = false;
+            }, 4000);
+        },
 
         quantity(action) {
             if (action == 'decrement'){

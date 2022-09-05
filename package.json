@@ -21,6 +21,8 @@
         "@tailwindcss/aspect-ratio": "^0.4.0",
         "@tailwindcss/forms": "^0.5.2",
         "@vitejs/plugin-vue": "^3.0.3",
+        "animate.css": "^4.1.1",
+        "jquery": "^3.6.1",
         "mdi-vue": "^3.0.13",
         "vue": "^3.2.36",
         "vue-axios": "^3.4.1",

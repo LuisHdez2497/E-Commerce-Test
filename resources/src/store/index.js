@@ -39,22 +39,23 @@ export default createStore({
             const cartItem = state.cartItems.find(item => item.itemId == itemId);
             if (cartItem) {
                 state.cartItems.splice(state.cartItems.indexOf(cartItem), 1);
-                reloadLocalStorage(state.cartItems, state.products);
             }
+            reloadLocalStorage(state.cartItems, state.products);
         },
-        INCREMENT_QUANTITY_BY_CART_ITEM(state, { itemId }){
+        INCREMENT_QUANTITY_BY_CART_ITEM(state, { itemId, quantity }){
             const cartItem = state.cartItems.find(item => item.itemId == itemId);
             if (cartItem) {
-                cartItem.quantity ++;
-                reloadLocalStorage(state.cartItems, state.products);
+                cartItem.quantity += quantity;
             }
+            reloadLocalStorage(state.cartItems, state.products);
         },
         DECREMENT_QUANTITY_BY_CART_ITEM(state, { itemId }){
+            console.log(itemId)
             const cartItem = state.cartItems.find(item => item.itemId == itemId);
             if (cartItem) {
                 cartItem.quantity --;
-                reloadLocalStorage(state.cartItems, state.products);
             }
+            reloadLocalStorage(state.cartItems, state.products);
         },
         RELOAD_CART(state, cart){
             state.cartItems = cart;
@@ -103,19 +104,19 @@ export default createStore({
                 }
             }
         },
-        removeItemFromCart({commit}, product) {
-            commit("REMOVE_ITEM_CART", { itemId: product.id });
+        removeItemFromCart({commit}, itemId) {
+            commit('REMOVE_ITEM_CART', {itemId: itemId})
         },
-        incrementQuantityByCartItem({ state, commit }, { itemId, quantity }) {
+        incrementQuantityByCartItem({ state, commit }, { itemId }) {
             const cartItem = state.cartItems.find(item => item.itemId == itemId);
             if (cartItem) {
-                commit("INCREMENT_QUANTITY_BY_CART_ITEM", { itemId: itemId });
+                commit("INCREMENT_QUANTITY_BY_CART_ITEM", { itemId: itemId, quantity: 1 });
             }
         },
-        decrementQuantityByCartItem({ state, commit }, { itemId, quantity }) {
+        decrementQuantityByCartItem({ state, commit }, { itemId }) {
             const cartItem = state.cartItems.find(item => item.itemId == itemId);
             if (cartItem) {
-                if (quantity > 1){
+                if (cartItem.quantity > 1){
                     commit("DECREMENT_QUANTITY_BY_CART_ITEM", { itemId: itemId });
                 }else {
                     commit('REMOVE_ITEM_CART', {itemId: itemId})
