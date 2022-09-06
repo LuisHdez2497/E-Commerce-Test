@@ -6,24 +6,23 @@
 </template>
 
 <script>
-import Notification from "./components/Notification.vue";
+import Notification from './components/Notification.vue';
+import { mapActions } from "vuex";
 
 export default {
     name: 'App',
     components: {
-        Notification
+        Notification,
     },
+    methods: {
+        ...mapActions(['reloadCart'])
+    },
+    created() {
+        this.reloadCart()
+    },
+    updated() {
+        this.reloadCart()
+    }
+
 }
 </script>
-
-<style>
-@import "./assets/css/styles.css";
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-}
-</style>
