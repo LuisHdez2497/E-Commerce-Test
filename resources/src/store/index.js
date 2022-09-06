@@ -3,7 +3,7 @@ import axios from "axios";
 import {commit} from "lodash/seq";
 
 //Base URL
-axios.defaults.baseURL = '//127.0.0.1:8000';
+axios.defaults.baseURL = 'https://www.webforcetest.lunaricode.com';
 //End Base URL
 
 const localStorage = window.localStorage;
