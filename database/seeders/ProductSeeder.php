@@ -15,7 +15,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $img = storage_path('app\public\img\DailyGreens.png');
+        $img = storage_path('app/public/img/DailyGreens.png');
         Product::create([
             'name' => 'Daily Greens',
             'slug' => 'daily-greens',
@@ -24,7 +24,7 @@ class ProductSeeder extends Seeder
             'status' => '1',
         ])->addMedia($img)->preservingOriginal()->toMediaCollection('images');
 
-        $img = storage_path('app\public\img\CompleteThyroid.png');
+        $img = storage_path('app/public/img/CompleteThyroid.png');
         Product::create([
             'name' => 'Complete Thyroid',
             'slug' => 'complete-thyroid',
@@ -33,7 +33,7 @@ class ProductSeeder extends Seeder
             'status' => '1',
         ])->addMedia($img)->preservingOriginal()->toMediaCollection('images');
 
-        $img = storage_path('app\public\img\DailyReds.png');
+        $img = storage_path('app/public/img/DailyReds.png');
         Product::create([
             'name' => 'Daily Reds',
             'slug' => 'daily-reds',
@@ -42,7 +42,7 @@ class ProductSeeder extends Seeder
             'status' => '1',
         ])->addMedia($img)->preservingOriginal()->toMediaCollection('images');
 
-        $img = storage_path('app\public\img\Moringa.png');
+        $img = storage_path('app/public/img/Moringa.png');
         Product::create([
             'name' => 'Moringa',
             'slug' => 'moringa',
@@ -51,7 +51,7 @@ class ProductSeeder extends Seeder
             'status' => '1',
         ])->addMedia($img)->preservingOriginal()->toMediaCollection('images');
 
-        $img = storage_path('app\public\img\Omega3X.png');
+        $img = storage_path('app/public/img/Omega3X.png');
         Product::create([
             'name' => 'Omega 3X',
             'slug' => 'omega-3x',
@@ -60,7 +60,7 @@ class ProductSeeder extends Seeder
             'status' => '1',
         ])->addMedia($img)->preservingOriginal()->toMediaCollection('images');
 
-        $img = storage_path('app\public\img\BeachReadyBites.png');
+        $img = storage_path('app/public/img/BeachReadyBites.png');
         Product::create([
             'name' => 'Beach Ready Bites',
             'slug' => 'beach-ready-bites',
