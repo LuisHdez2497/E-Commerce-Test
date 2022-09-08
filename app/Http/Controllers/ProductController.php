@@ -17,7 +17,13 @@ class ProductController extends Controller
     }
 
     public function store(ProductRequest $request){
-        $data = $request->all();
+        $data = [
+            'name' => $request['name'],
+            'slug' => str_replace(' ', '-', $request['name']),
+            'description' => $request['description'],
+            'price' => $request['price'],
+            'status' => $request['status']
+        ];
 
         if ($request->hasFile('image')){
             $file = $request->file('image');
@@ -40,7 +46,13 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, $id){
         $product = Product::findOrFail($id);
-        $data = $request->all();
+        $data = [
+            'name' => $request['name'],
+            'slug' => str_replace(' ', '-', $request['name']),
+            'description' => $request['description'],
+            'price' => $request['price'],
+            'status' => $request['status']
+        ];
 
         if ($request->hasFile('image')){
             $file = $request->file('image');

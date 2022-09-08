@@ -26,7 +26,7 @@
                         </tr>
                         </thead>
                         <tbody class="text-lg">
-                        <tr v-for="product in products" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <tr v-for="(product, index) in products" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ product.name }}
                             </th>
@@ -38,7 +38,8 @@
                             </td>
                             <td class="py-4 px-6">
                                 <router-link :to="'product-preview/'+product.id" :id="product.id" class="font-medium text-green-600 mr-4 dark:text-blue-500 hover:underline">Show</router-link>
-                                <router-link :to="'edit-product/'+product.id" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</router-link>
+                                <router-link :to="'edit-product/'+product.id" :id="product.id" class="font-medium text-blue-600 dark:text-blue-500 mr-4 hover:underline">Edit</router-link>
+                                <button @click="this.delete(product.id, index)" class="font-medium text-red-600 hover:underline">Delete</button>
                             </td>
                         </tr>
                         </tbody>
@@ -52,17 +53,37 @@
 <script>
 import SideBar from '../../../components/SideBar.vue';
 import { mapState, mapActions } from 'vuex';
+import store from "../../../store";
 
 export default {
     name: "Products",
     components: {
         SideBar
     },
+    data(){
+        return {
+            product:{
+                id: ''
+            }
+        }
+    },
     computed: {
         ...mapState(['products'])
     },
     methods: {
-        ...mapActions(['getProducts'])
+        ...mapActions(['getProducts', 'deleteProduct']),
+
+        delete(id, index){
+            this.product.id = id;
+            if (confirm('¿Do you want to delete this product?')){
+                store.commit('SET_PRODUCT', this.product);
+                this.deleteProduct();
+                this.products.splice(index, 1);
+                setTimeout(() => {
+                    store.commit('SET_ALERT', {alertVisible: false})
+                }, 5000);
+            }
+        }
     },
     mounted() {
         this.getProducts()
