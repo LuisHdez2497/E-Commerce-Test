@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 
 class UserRequest extends FormRequest
 {
@@ -19,14 +20,21 @@ class UserRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function rules()
     {
-        return [
-            'name' => 'required|regex:/^[\pL\s\-]+$/u|max:90',
-            'email' => 'required|email|unique',
-            'password' => 'required|string|max:12|confirmed'
-        ];
+        if ($this->method() == 'POST'){
+            return [
+                'name' => 'required|regex:/^[\pL\s\-]+$/u|max:90',
+                'email' => 'required|email',
+                'password' => 'required|string|max:12'
+            ];
+        }elseif ($this->method() == 'PUT'){
+            return [
+                'name' => 'required|regex:/^[\pL\s\-]+$/u|max:90',
+                'email' => 'required|email',
+            ];
+        }
     }
 }

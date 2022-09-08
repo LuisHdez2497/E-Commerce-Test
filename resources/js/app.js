@@ -5,6 +5,7 @@ import VueAxios from 'vue-axios';
 import store from '../src/store';
 import router from '../src/router';
 import '../src/assets/css/styles.css';
+import 'flowbite';
 
 createApp(App)
     .use(VueAxios, axios)

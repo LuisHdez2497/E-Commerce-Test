@@ -4,7 +4,6 @@ import Home from '../views/Client/Home.vue';
 import ProductDescription from '../views/Client/ProductPreview.vue';
 import Checkout from '../views/Client/Checkout.vue';
 import Cart from '../views/Client/Cart.vue';
-import ConfirmedOrder from '../views/Client/ConfirmedOrder.vue';
 
 import Login from '../views/Admin/Login.vue';
 
@@ -16,7 +15,6 @@ import ProductPreview from '../views/Admin/Products/ProductPreview.vue';
 import Users from '../views/Admin/Users/Users.vue';
 import AddUser from '../views/Admin/Users/AddUser.vue';
 import EditUser from '../views/Admin/Users/EditUser.vue';
-import UserPreview from '../views/Admin/Users/UserPreview.vue';
 
 const routes = [
     //Client Routes
@@ -24,7 +22,6 @@ const routes = [
     {path: '/product-preview/:id/:slug', name: "Product Description", component: ProductDescription, props: true},
     {path: '/checkout', name: "Checkout", component: Checkout, props: true},
     {path: '/cart', name: "Cart", component: Cart, props: true},
-    {path: '/confirmed-order', name: "Confirmed Order", component: ConfirmedOrder, props: true},
     //End Client Routes
 
     //Admin Routes
@@ -38,7 +35,6 @@ const routes = [
     {path: '/admin/users', name: "Users", component: Users},
     {path: '/admin/add-user', name: "Add User", component: AddUser, props: true},
     {path: '/admin/edit-user/:id', name: "Edit User", component: EditUser, props: true},
-    {path: '/admin/user-preview/:id', name: "User Preview", component: UserPreview, props: true},
     //End Admin Routes
 ];
 

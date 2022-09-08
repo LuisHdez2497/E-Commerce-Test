@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import axios from "axios";
 import {commit} from "lodash/seq";
+import {handleError} from "vue";
 
 //Base URL
 axios.defaults.baseURL = '//127.0.0.1:8000';
@@ -23,7 +24,9 @@ export default createStore({
         media: {},
 
         user: {},
-        users: []
+        users: [],
+
+        alert: {}
     },
 
     mutations: {
@@ -80,6 +83,10 @@ export default createStore({
         },
         SET_USERS(state, users){
             state.users = users;
+        },
+
+        SET_ALERT(state, alert){
+            state.alert = alert;
         },
     },
 
@@ -138,79 +145,37 @@ export default createStore({
                     commit('SET_MEDIA', response.data.media[0])
                 }).catch(error=> console.log(error))
         },
-        insertProduct({commit}){
-            var obj;
+        insertProduct({state, commit}){
             axios.post('/api/add-product', this.state.product)
                 .then(response => {
                     commit('SET_PRODUCT', {});
-                    var element = '<div class="alert alert-success message-error">'+
-                        '<span>'+ response.data.message +'</span>'+
-                        '<button onclick="this.parentNode.remove()" type="button" class="close" aria-label="Close"> x </button>'+
-                        '</div>';
-
-                    document.getElementById('notifications').innerHTML += element;
+                    commit('SET_ALERT', {color: 'success', title: 'Success',  description: response.data.message, alertVisible: true})
                 })
                 .catch(error => {
                     commit('SET_PRODUCT', {});
-                    obj = error.response.data.errors;
-                    Object.keys(obj).forEach(key => {
-                        var element = '<div class="alert alert-danger message-error">'+
-                            '<span>'+ obj[key][0] +'</span>'+
-                            '<button onclick="this.parentNode.remove()" type="button" class="close" aria-label="Close"> x </button>'+
-                            '</div>';
-
-                        document.getElementById('notifications').innerHTML += element;
-                    });
+                    commit('SET_ALERT', {color: 'error', title: 'Error', description: error.response.data.message, alertVisible: true})
                 })
         },
         updateProduct({commit}){
-            var obj;
             axios.put('/api/edit-product/'+this.state.product.id, this.state.product)
                 .then(response => {
                     commit('SET_PRODUCT', {});
-                    var element = '<div class="alert alert-success message-error">'+
-                        '<span>'+ response.data.message +'</span>'+
-                        '<button onclick="this.parentNode.remove()" type="button" class="close" aria-label="Close"> x </button>'+
-                        '</div>';
-
-                    document.getElementById('notifications').innerHTML += element;
+                    commit('SET_ALERT', {color: 'success', title: 'Success',  description: response.data.message, alertVisible: true})
                 })
                 .catch(error => {
                     commit('SET_PRODUCT', {});
-                    obj = error.response.data.errors;
-                    Object.keys(obj).forEach(key => {
-                        var element = '<div class="alert alert-danger message-error">'+
-                            '<span>'+ obj[key][0] +'</span>'+
-                            '<button onclick="this.parentNode.remove()" type="button" class="close" aria-label="Close"> x </button>'+
-                            '</div>';
-
-                        document.getElementById('notifications').innerHTML += element;
-                    });
+                    commit('SET_ALERT', {color: 'error', title: 'Error', description: error.response.data.message, alertVisible: true})
                 })
         },
         deleteProduct({commit}){
-            var obj;
             axios.delete('/api/delete-product/'+this.state.product.id)
                 .then(response => {
                     commit('SET_PRODUCT', {});
-                    var element = '<div class="alert alert-success message-error">'+
-                        '<span>'+ response.data.message +'</span>'+
-                        '<button onclick="this.parentNode.remove()" type="button" class="close" aria-label="Close"> x </button>'+
-                        '</div>';
-
-                    document.getElementById('notifications').innerHTML += element;
+                    commit('SET_ALERT', {color: 'success', title: 'Success',  description: response.data.message, alertVisible: true})
                 })
                 .catch(error => {
                     commit('SET_PRODUCT', {});
-                    obj = error.response.data.errors;
-                    Object.keys(obj).forEach(key => {
-                        var element = '<div class="alert alert-danger message-error">'+
-                            '<span>'+ obj[key][0] +'</span>'+
-                            '<button onclick="this.parentNode.remove()" type="button" class="close" aria-label="Close"> x </button>'+
-                            '</div>';
-
-                        document.getElementById('notifications').innerHTML += element;
-                    });
+                    commit('SET_ALERT', {color: 'error', title: 'Error', description: error.response.data.message, alertVisible: true})
                 })
         },
 
@@ -218,88 +183,42 @@ export default createStore({
         getUsers({commit}){
             axios.get('/api/users')
                 .then(response => {
-                    commit('SET_USER', response.data)
-                }).catch(error=> console.log(error))
-        },
-        showUser({commit}){
-            axios.get('/api/user-preview'+this.state.user.id)
-                .then(response => {
-                    commit('SET_USER', response.data)
+                    commit('SET_USERS', response.data)
                 }).catch(error=> console.log(error))
         },
         insertUser({commit}){
-            var obj;
+            let obj;
             axios.post('/api/add-user', this.state.user)
                 .then(response => {
                     commit('SET_USER', {});
-                    var element = '<div class="alert alert-success message-error">'+
-                        '<span>'+ response.data.message +'</span>'+
-                        '<button onclick="this.parentNode.remove()" type="button" class="close" aria-label="Close"> x </button>'+
-                        '</div>';
-
-                    document.getElementById('notifications').innerHTML += element;
+                    commit('SET_ALERT', {color: 'success', title: 'Success',  description: response.data.message, alertVisible: true})
                 })
                 .catch(error => {
-                    commit('SET_USER', {});
-                    obj = error.response.data.errors;
-                    Object.keys(obj).forEach(key => {
-                        var element = '<div class="alert alert-danger message-error">'+
-                            '<span>'+ obj[key][0] +'</span>'+
-                            '<button onclick="this.parentNode.remove()" type="button" class="close" aria-label="Close"> x </button>'+
-                            '</div>';
 
-                        document.getElementById('notifications').innerHTML += element;
-                    });
+                    commit('SET_USER', {});
+                    commit('SET_ALERT', {color: 'error', title: 'Error', description: error.response.data.message, alertVisible: true})
                 })
         },
         updateUser({commit}){
-            var obj;
             axios.put('/api/edit-user/'+this.state.user.id, this.state.user)
                 .then(response => {
                     commit('SET_USER', {});
-                    var element = '<div class="alert alert-success message-error">'+
-                        '<span>'+ response.data.message +'</span>'+
-                        '<button onclick="this.parentNode.remove()" type="button" class="close" aria-label="Close"> x </button>'+
-                        '</div>';
-
-                    document.getElementById('notifications').innerHTML += element;
+                    commit('SET_ALERT', {color: 'success', title: 'Success',  description: response.data.message, alertVisible: true})
                 })
                 .catch(error => {
                     commit('SET_USER', {});
-                    obj = error.response.data.errors;
-                    Object.keys(obj).forEach(key => {
-                        var element = '<div class="alert alert-danger message-error">'+
-                            '<span>'+ obj[key][0] +'</span>'+
-                            '<button onclick="this.parentNode.remove()" type="button" class="close" aria-label="Close"> x </button>'+
-                            '</div>';
-
-                        document.getElementById('notifications').innerHTML += element;
-                    });
+                    commit('SET_ALERT', {color: 'error', title: 'Error', description: error.response.data.message, alertVisible: true})
                 })
         },
         deleteUser({commit}){
-            var obj;
-            axios.delete('/api/delete-user/'+this.state.product.id)
+            axios.delete('/api/delete-user/'+this.state.user.id)
                 .then(response => {
                     commit('SET_USER', {});
-                    var element = '<div class="alert alert-success message-error">'+
-                        '<span>'+ response.data.message +'</span>'+
-                        '<button onclick="this.parentNode.remove()" type="button" class="close" aria-label="Close"> x </button>'+
-                        '</div>';
-
-                    document.getElementById('notifications').innerHTML += element;
+                    commit('SET_ALERT', {color: 'success', title: 'Success',  description: response.data.message, alertVisible: true})
                 })
                 .catch(error => {
                     commit('SET_USER', {});
-                    obj = error.response.data.errors;
-                    Object.keys(obj).forEach(key => {
-                        var element = '<div class="alert alert-danger message-error">'+
-                            '<span>'+ obj[key][0] +'</span>'+
-                            '<button onclick="this.parentNode.remove()" type="button" class="close" aria-label="Close"> x </button>'+
-                            '</div>';
-
-                        document.getElementById('notifications').innerHTML += element;
-                    });
+                    commit('SET_ALERT', {color: 'error', title: 'Error', description: error.response.data.message, alertVisible: true})
                 })
         },
     },
