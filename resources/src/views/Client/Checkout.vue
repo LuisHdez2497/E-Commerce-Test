@@ -12,10 +12,10 @@
                     </div>
                     <div class="w-full flex space-x-4 justify-end">
                         <router-link to="/cart" class=" rounded-md border border-transparent bg-gray-500 py-2 px-4 text-xl font-semibold text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                            Back to cart
+                            Volver al carrito
                         </router-link>
                         <button type="submit" class="w-1/4 border border-transparent bg-orange-500 py-2 px-4 text-xl hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded-md shadow-md text-white font-semibold">
-                            Confirm payment
+                            Confirmar pago
                         </button>
                     </div>
                 </div>

@@ -13,7 +13,11 @@ class UserController extends Controller
     }
 
     public function store(UserRequest $request){
-        $data = $request->all();
+        $data = [
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password'])
+        ];
         User::create($data);
         return response()->json(['message' => 'User is registered']);
     }
@@ -25,7 +29,18 @@ class UserController extends Controller
 
     public function update(UserRequest $request, $id){
         $user = User::findOrFail($id);
-        $data = $request->all();
+        if ($request['password'] == ''){
+            $data = [
+                'name' => $request['name'],
+                'email' => $request['email'],
+            ];
+        }else{
+            $data = [
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => bcrypt($request['password'])
+            ];
+        }
         $user->update($data);
 
         return response()->json(['message' => 'User has been saved']);
