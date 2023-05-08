@@ -3,8 +3,8 @@
         <SideBar></SideBar>
         <div class="flex w-full flex-col min-h-full p-8">
             <div class="flex justify-between m-5 text-5xl font-semibold">
-                <h1>Products</h1>
-                <router-link to="add-product" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">Add</router-link>
+                <h1>Productos</h1>
+                <router-link to="agregar-producto" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">Agregar</router-link>
             </div>
             <div class="m-5">
                 <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
@@ -12,16 +12,16 @@
                         <thead class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="py-3 px-6">
-                                Product name
+                                Nombre del producto
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Price
+                                Precio
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Status
+                                Estado
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Action
+                                Acciones
                             </th>
                         </tr>
                         </thead>
@@ -34,12 +34,12 @@
                                 $ {{ product.price }}
                             </td>
                             <td class="py-4 px-6">
-                                {{ product.status == 1 ? "Available" : "Out of stock" }}
+                                {{ product.status == 1 ? "Disponible" : "Sin Inventario" }}
                             </td>
                             <td class="py-4 px-6">
-                                <router-link :to="'product-preview/'+product.id" :id="product.id" class="font-medium text-green-600 mr-4 dark:text-blue-500 hover:underline">Show</router-link>
-                                <router-link :to="'edit-product/'+product.id" :id="product.id" class="font-medium text-blue-600 dark:text-blue-500 mr-4 hover:underline">Edit</router-link>
-                                <button @click="this.delete(product.id, index)" class="font-medium text-red-600 hover:underline">Delete</button>
+                                <router-link :to="'vista-producto/'+product.id" :id="product.id" class="font-medium text-green-600 mr-4 dark:text-blue-500 hover:underline">Ver</router-link>
+                                <router-link :to="'editar-producto/'+product.id" :id="product.id" class="font-medium text-blue-600 dark:text-blue-500 mr-4 hover:underline">Editar</router-link>
+                                <button @click="this.delete(product.id, index)" class="font-medium text-red-600 hover:underline">Eliminar</button>
                             </td>
                         </tr>
                         </tbody>

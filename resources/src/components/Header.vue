@@ -6,15 +6,15 @@
                     <div class="flex items-end justify-evenly space-x-8 xl:space-x-8">
 
                         <router-link to="/" class="text-black text-center text-xl font-bold hover:text-orange-500">
-                            <i class="block mdi mdi-home-outline text-5xl"></i>Home
+                            <i class="block mdi mdi-home-outline text-5xl"></i>Inicio
                         </router-link>
 
-                        <router-link to="/cart" class="text-black text-xl text-center font-bold hover:text-orange-500">
-                            <i class="block mdi mdi-cart-outline text-5xl"></i>Cart
+                        <router-link to="/carrito" class="text-black text-xl text-center font-bold hover:text-orange-500">
+                            <i class="block mdi mdi-cart-outline text-5xl"></i>Carrito
                         </router-link>
 
                         <router-link to="/login" class="text-black text-xl text-center font-bold hover:text-orange-500">
-                            <i class="mdi mdi-login-variant block text-5xl"></i>Login
+                            <i class="mdi mdi-login-variant block text-5xl"></i>Iniciar Sesión
                         </router-link>
 
                     </div>

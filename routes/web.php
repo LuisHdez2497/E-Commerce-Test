@@ -13,20 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('home', ['title' => 'Home']);});
-Route::get('/product-preview/{id}/{slug}', function () {return view('home', ['title' => 'Preview']);});
-Route::get('/checkout', function () {return view('home', ['title' => 'Checkout']);});
-Route::get('/cart', function () {return view('home', ['title' => 'Checkout']);});
+Route::get('/', function () {return view('home', ['title' => 'Inicio']);});
+Route::get('/vista-previa/{id}/{slug}', function () {return view('home', ['title' => 'Vista Previa']);});
+Route::get('/checkout', function () {return view('home', ['title' => 'Verificar']);});
+Route::get('/carrito', function () {return view('home', ['title' => 'Carrito']);});
 
 //Admin Routes
-Route::get('/login', function () {return view('home', ['title' => 'Login']);});
+Route::get('/login', function () {return view('home', ['title' => 'Iniciar Sesión']);});
 
-Route::get('/admin/products', function () {return view('home', ['title' => 'Products']);});
-Route::get('/admin/add-product', function () {return view('home', ['title' => 'Add Product']);});
-Route::get('/admin/edit-product/{id}', function () {return view('home', ['title' => 'Edit Product']);});
-Route::get('/admin/product-preview/{id}', function () {return view('home', ['title' => 'Preview']);});
+Route::get('/admin/productos', function () {return view('home', ['title' => 'Productos']);});
+Route::get('/admin/agregar-producto', function () {return view('home', ['title' => 'Agregar Producto']);});
+Route::get('/admin/editar-producto/{id}', function () {return view('home', ['title' => 'Editar Producto']);});
+Route::get('/admin/vista-producto/{id}', function () {return view('home', ['title' => 'Vista Previa']);});
 
-Route::get('/admin/users', function () {return view('home', ['title' => 'Users']);});
-Route::get('/admin/add-user', function () {return view('home', ['title' => 'Add User']);});
-Route::get('/admin/edit-user/{id}', function () {return view('home', ['title' => 'Edit User']);});
+Route::get('/admin/usuarios', function () {return view('home', ['title' => 'Usuarios']);});
+Route::get('/admin/agregar-usuario', function () {return view('home', ['title' => 'Agregar Usuario']);});
+Route::get('/admin/editar-usuario/{id}', function () {return view('home', ['title' => 'Editar Usuario']);});
 //End Admin Routes

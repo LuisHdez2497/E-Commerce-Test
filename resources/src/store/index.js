@@ -133,20 +133,20 @@ export default createStore({
 
         //Products
         getProducts({commit}){
-            axios.get('/api/products')
+            axios.get('/api/productos')
                 .then(response => {
                     commit('SET_PRODUCTS', response.data)
                 }).catch(error=> console.log(error))
         },
         showProduct({commit}){
-            axios.get('/api/product-preview/'+this.state.product.id)
+            axios.get('/api/vista-previa/'+this.state.product.id)
                 .then(response => {
                     commit('SET_PRODUCT', response.data)
                     commit('SET_MEDIA', response.data.media[0])
                 }).catch(error=> console.log(error))
         },
         insertProduct({state, commit}){
-            axios.post('/api/add-product', this.state.product)
+            axios.post('/api/agregar-producto', this.state.product)
                 .then(response => {
                     commit('SET_PRODUCT', {});
                     commit('SET_ALERT', {color: 'success', title: 'Success',  description: response.data.message, alertVisible: true})
@@ -157,7 +157,7 @@ export default createStore({
                 })
         },
         updateProduct({commit}){
-            axios.put('/api/edit-product/'+this.state.product.id, this.state.product)
+            axios.put('/api/editar-producto/'+this.state.product.id, this.state.product)
                 .then(response => {
                     commit('SET_PRODUCT', {});
                     commit('SET_ALERT', {color: 'success', title: 'Success',  description: response.data.message, alertVisible: true})
@@ -168,7 +168,7 @@ export default createStore({
                 })
         },
         deleteProduct({commit}){
-            axios.delete('/api/delete-product/'+this.state.product.id)
+            axios.delete('/api/eliminar-producto/'+this.state.product.id)
                 .then(response => {
                     commit('SET_PRODUCT', {});
                     commit('SET_ALERT', {color: 'success', title: 'Success',  description: response.data.message, alertVisible: true})
@@ -181,14 +181,14 @@ export default createStore({
 
         //Users
         getUsers({commit}){
-            axios.get('/api/users')
+            axios.get('/api/usuarios')
                 .then(response => {
                     commit('SET_USERS', response.data)
                 }).catch(error=> console.log(error))
         },
         insertUser({commit}){
             let obj;
-            axios.post('/api/add-user', this.state.user)
+            axios.post('/api/agregar-usuario', this.state.user)
                 .then(response => {
                     commit('SET_USER', {});
                     commit('SET_ALERT', {color: 'success', title: 'Success',  description: response.data.message, alertVisible: true})
@@ -200,7 +200,7 @@ export default createStore({
                 })
         },
         updateUser({commit}){
-            axios.put('/api/edit-user/'+this.state.user.id, this.state.user)
+            axios.put('/api/editar-usuario/'+this.state.user.id, this.state.user)
                 .then(response => {
                     commit('SET_USER', {});
                     commit('SET_ALERT', {color: 'success', title: 'Success',  description: response.data.message, alertVisible: true})
@@ -211,7 +211,7 @@ export default createStore({
                 })
         },
         deleteUser({commit}){
-            axios.delete('/api/delete-user/'+this.state.user.id)
+            axios.delete('/api/eliminar-usuario/'+this.state.user.id)
                 .then(response => {
                     commit('SET_USER', {});
                     commit('SET_ALERT', {color: 'success', title: 'Success',  description: response.data.message, alertVisible: true})

@@ -19,7 +19,7 @@
                     <div class="flex text-sm divide-x">
                         <div class="custom-number-input flex justify-between items-end text-center h-20 w-3/4 lg:w-4/12">
                             <div class="flex flex-col w-32">
-                                <label for="custom-input-number" class="w-full text-gray-700 text-sm font-semibold">Quantity</label>
+                                <label for="custom-input-number" class="w-full text-gray-700 text-sm font-semibold">Cantidad</label>
                                 <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
                                     <button @click="decrementQuantityByCartItem({itemId: product.id})" data-action="decrement"
                                             class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-32 rounded-l cursor-pointer outline-none">
@@ -46,7 +46,7 @@
                                     <path
                                         d="M328,88V40c0-13.458-9.488-24-21.6-24H205.6C193.488,16,184,26.542,184,40V88H64v32H448V88ZM216,48h80V88H216Z"></path>
                                 </svg>
-                                <span>Remove</span>
+                                <span>Eliminar</span>
                             </button>
                         </div>
                     </div>

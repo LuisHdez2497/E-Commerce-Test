@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', 50);
             $table->string('slug');
             $table->string('description', 255);
-            $table->string('price', 5);
+            $table->string('price', 10);
             $table->boolean('status');
             $table->timestamps();
         });

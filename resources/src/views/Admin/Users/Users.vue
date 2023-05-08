@@ -3,8 +3,8 @@
         <SideBar></SideBar>
         <div class="flex w-full flex-col min-h-full p-8">
             <div class="flex justify-between m-5 text-5xl font-semibold">
-                <h1>Users</h1>
-                <router-link to="add-user" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">Add</router-link>
+                <h1>Usuarios</h1>
+                <router-link to="agregar-usuario" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">Agregar</router-link>
             </div>
             <div class="m-5">
                 <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
@@ -12,13 +12,13 @@
                         <thead class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="py-3 px-6">
-                                User name
+                                Nombre del Usuario
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Email
+                                Correo Electronico
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Action
+                                Acciones
                             </th>
                         </tr>
                         </thead>
@@ -31,8 +31,8 @@
                                 {{ user.email }}
                             </td>
                             <td class="py-4 px-6">
-                                <router-link :to="'edit-user/'+user.id" :id="user.id" class="font-medium text-blue-600 dark:text-blue-500 mr-4 hover:underline">Edit</router-link>
-                                <button @click="this.delete(user.id, index)" class="font-medium text-red-600 hover:underline">Delete</button>
+                                <router-link :to="'editar-usuario/'+user.id" :id="user.id" class="font-medium text-blue-600 dark:text-blue-500 mr-4 hover:underline">Editar</router-link>
+                                <button @click="this.delete(user.id, index)" class="font-medium text-red-600 hover:underline">Eliminar</button>
                             </td>
                         </tr>
                         </tbody>
