@@ -4,7 +4,7 @@ import {commit} from "lodash/seq";
 import {handleError} from "vue";
 
 //Base URL
-axios.defaults.baseURL = 'https://www.negocios.lunaricode.com/api';
+axios.defaults.baseURL = 'https://www.negocios.lunaricode.com';
 //End Base URL
 
 const localStorage = window.localStorage;
