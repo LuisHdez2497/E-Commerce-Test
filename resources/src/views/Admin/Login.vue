@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="w-full flex justify-center">
-                        <a href="http://127.0.0.1:8000/admin/productos" class="group relative flex w-3/4 justify-center rounded-md border border-transparent bg-orange-500 py-2 px-4 text-xl font-medium text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        <a href="https://www.negocios.lunaricode.com/admin/productos" class="group relative flex w-3/4 justify-center rounded-md border border-transparent bg-orange-500 py-2 px-4 text-xl font-medium text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                                 <LockClosedIcon class="h-5 w-5 text-white" aria-hidden="true"/>
                             </span>
